@@ -1,34 +1,9 @@
-"use client";
-import { useState } from "react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import LeadForm from "@/components/LeadForm";
 import { siteConfig } from "@/config/site";
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", phone: "", message: "" });
-  const [sent, setSent] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-
-    if (siteConfig.zapierWebhookStep1) {
-      await fetch(siteConfig.zapierWebhookStep1, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...form,
-          source: "contact-page",
-          submittedAt: new Date().toISOString(),
-        }),
-      }).catch(() => {});
-    }
-
-    setLoading(false);
-    setSent(true);
-  }
-
   return (
     <>
       <Nav />
@@ -42,25 +17,24 @@ export default function ContactPage() {
         >
           <div className="max-w-3xl mx-auto px-4 text-center">
             <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-3">
-              Contact Us
+              Get Your Cash Offer
             </h1>
             <p className="text-white/80 text-lg">
-              Have a question? We&apos;d love to hear from you.
+              Fill out the form below and we&apos;ll be in touch within 24 hours.
             </p>
           </div>
         </section>
 
         <section className="py-16 md:py-20 bg-white">
-          <div className="max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-12">
-            {/* Info */}
+          <div className="max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-start">
+            {/* Contact info */}
             <div>
               <h2
                 className="font-playfair text-2xl font-bold mb-6"
                 style={{ color: siteConfig.colors.primary }}
               >
-                Get in Touch
+                Prefer to Talk?
               </h2>
-
               <div className="space-y-5">
                 <div className="flex items-start gap-4">
                   <div
@@ -73,10 +47,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-semibold text-gray-900">Phone</p>
-                    <a
-                      href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
-                      className="text-gray-600 hover:text-gray-900 transition-colors"
-                    >
+                    <a href={`tel:${siteConfig.phone.replace(/\D/g, "")}`} className="text-gray-600 hover:text-gray-900 transition-colors">
                       {siteConfig.phone}
                     </a>
                   </div>
@@ -93,10 +64,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-semibold text-gray-900">Email</p>
-                    <a
-                      href={`mailto:${siteConfig.email}`}
-                      className="text-gray-600 hover:text-gray-900 transition-colors"
-                    >
+                    <a href={`mailto:${siteConfig.email}`} className="text-gray-600 hover:text-gray-900 transition-colors">
                       {siteConfig.email}
                     </a>
                   </div>
@@ -114,76 +82,14 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-semibold text-gray-900">Service Area</p>
-                    <p className="text-gray-600">
-                      {siteConfig.serviceArea}, {siteConfig.serviceState} and surrounding areas
-                    </p>
+                    <p className="text-gray-600">{siteConfig.serviceArea}, {siteConfig.serviceState} and surrounding areas</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Form */}
-            <div>
-              {sent ? (
-                <div
-                  className="rounded-2xl p-8 text-center"
-                  style={{ backgroundColor: siteConfig.colors.surface }}
-                >
-                  <div
-                    className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-white"
-                    style={{ backgroundColor: siteConfig.colors.accent }}
-                  >
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <h3 className="font-bold text-xl text-gray-900 mb-2">Message Sent!</h3>
-                  <p className="text-gray-600 text-sm">
-                    We&apos;ll get back to you within one business day.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                    <input
-                      type="text"
-                      required
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                    <input
-                      type="tel"
-                      required
-                      value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                    <textarea
-                      rows={4}
-                      value={form.message}
-                      onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 resize-none"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full py-4 rounded-lg text-white font-bold transition-colors disabled:opacity-60"
-                    style={{ backgroundColor: siteConfig.colors.primary }}
-                  >
-                    {loading ? "Sending..." : "Send Message"}
-                  </button>
-                </form>
-              )}
-            </div>
+            {/* Same LeadForm as homepage */}
+            <LeadForm />
           </div>
         </section>
       </main>
