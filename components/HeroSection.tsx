@@ -4,72 +4,125 @@ import LeadForm from "./LeadForm";
 export default function HeroSection() {
   return (
     <section
-      className="relative py-16 md:py-24"
+      className="relative overflow-hidden"
       style={{
         background: `linear-gradient(135deg, ${siteConfig.colors.primary} 0%, ${siteConfig.colors.primaryDark} 100%)`,
       }}
     >
-      <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+      {/* Decorative background circles */}
+      <div
+        className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-5 pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, white 0%, transparent 70%)",
+          transform: "translate(30%, -30%)",
+        }}
+      />
+      <div
+        className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-5 pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, white 0%, transparent 70%)",
+          transform: "translate(-40%, 40%)",
+        }}
+      />
+
+      {/* Trust strip at top */}
+      <div
+        className="relative border-b py-2.5"
+        style={{ borderColor: "rgba(255,255,255,0.1)", backgroundColor: "rgba(0,0,0,0.15)" }}
+      >
+        <div className="max-w-6xl mx-auto px-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-white/70 text-xs font-medium">
+          {[
+            "✓ No Repairs Required",
+            "✓ Zero Commissions or Fees",
+            "✓ Cash Offer in 24 Hours",
+            "✓ Close in as Little as 7 Days",
+          ].map((item) => (
+            <span key={item}>{item}</span>
+          ))}
+        </div>
+      </div>
+
+      {/* Main hero content */}
+      <div className="relative max-w-6xl mx-auto px-4 py-14 md:py-20 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
         {/* Copy */}
         <div className="text-white">
+          {/* Badge */}
           <div
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-6"
-            style={{ backgroundColor: siteConfig.colors.accent, color: "#fff" }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mb-6 uppercase tracking-wider"
+            style={{ backgroundColor: siteConfig.colors.accent + "25", border: `1px solid ${siteConfig.colors.accent}50`, color: siteConfig.colors.accent }}
           >
-            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clipRule="evenodd"
-              />
-            </svg>
-            Cash Offers in {siteConfig.serviceArea}
+            <span
+              className="w-2 h-2 rounded-full animate-pulse"
+              style={{ backgroundColor: siteConfig.colors.accent }}
+            />
+            Local Cash Buyers · {siteConfig.serviceArea}, {siteConfig.serviceState}
           </div>
 
-          <h1 className="font-playfair text-4xl md:text-5xl font-bold leading-tight mb-4">
-            Sell Your House Fast in{" "}
-            <span style={{ color: siteConfig.colors.accent }}>
-              {siteConfig.serviceArea}
+          {/* Headline */}
+          <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-5">
+            Sell Your House Fast —{" "}
+            <span
+              className="relative inline-block"
+              style={{ color: siteConfig.colors.accent }}
+            >
+              Get Cash
             </span>{" "}
-            — For Cash
+            in {siteConfig.serviceArea}
           </h1>
 
-          <p className="text-lg text-white/80 mb-6 leading-relaxed">
-            No repairs. No commissions. No open houses. Get a fair cash offer
-            within 24 hours and close on your schedule — sometimes in as little
-            as 7 days.
+          {/* Sub-headline */}
+          <p className="text-lg md:text-xl text-white/80 mb-8 leading-relaxed max-w-lg">
+            We make fair cash offers on homes in any condition. Skip the repairs,
+            skip the agents, skip the waiting. Close on <strong className="text-white">your</strong> timeline.
           </p>
 
-          <ul className="space-y-2.5 text-white/90 text-sm">
+          {/* Proof row */}
+          <div className="flex flex-wrap gap-4 mb-8">
             {[
-              "No repairs or cleaning required",
-              "Zero realtor commissions or fees",
-              "Cash offer in 24 hours",
-              "Close in as little as 7 days",
-              "No obligation — completely free",
+              { icon: "🏠", label: "Any Condition" },
+              { icon: "⚡", label: "Offer in 24 Hrs" },
+              { icon: "💰", label: "No Fees Ever" },
             ].map((item) => (
-              <li key={item} className="flex items-center gap-2">
-                <svg
-                  className="w-4 h-4 shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  style={{ color: siteConfig.colors.accent }}
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                {item}
-              </li>
+              <div
+                key={item.label}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-white"
+                style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
+              >
+                <span>{item.icon}</span>
+                {item.label}
+              </div>
             ))}
-          </ul>
+          </div>
+
+          {/* Phone CTA */}
+          <div className="flex items-center gap-3 mt-2">
+            <a
+              href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
+              className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm font-medium"
+            >
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: "rgba(255,255,255,0.15)" }}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </div>
+              Prefer to call? <span className="font-bold text-white">{siteConfig.phone}</span>
+            </a>
+          </div>
         </div>
 
         {/* Form */}
-        <div id="get-offer">
-          <LeadForm />
+        <div id="get-offer" className="relative">
+          {/* Glow behind form */}
+          <div
+            className="absolute inset-0 rounded-2xl blur-2xl opacity-20 pointer-events-none"
+            style={{ backgroundColor: siteConfig.colors.accent, transform: "scale(0.9) translateY(10px)" }}
+          />
+          <div className="relative">
+            <LeadForm />
+          </div>
         </div>
       </div>
     </section>
