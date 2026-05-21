@@ -63,6 +63,19 @@ export const siteConfig = {
   // Empty array = "As Seen On" section hidden
   mediaLogos: [] as string[], // e.g. ["ABC", "FOX", "CBS", "NBC"]
 
+  // ── Cash Offer Comparison ──────────────────────────────────
+  // Adjust these numbers to reflect a realistic example for the client's market
+  comparison: {
+    cashOfferPrice: 150000,
+    listingPrice: 170000,
+    commissionRate: 6,        // percent of listing price
+    closingCostRate: 2,       // percent of listing price
+    estimatedRepairs: 4000,
+    miscCarryingCosts: 1000,
+    cashOfferDays: "14 Days",
+    traditionalDays: "65+ Days",
+  },
+
   // ── About Page ─────────────────────────────────────────────
   founderName: "John Smith",
   founderTitle: "Founder & Owner",

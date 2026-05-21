@@ -1,99 +1,178 @@
 import { siteConfig } from "@/config/site";
 
-const rows = [
-  { label: "Realtor Commissions", us: false, traditional: true },
-  { label: "Repairs or Renovations", us: false, traditional: true },
-  { label: "Open Houses & Showings", us: false, traditional: true },
-  { label: "Closing Costs", us: false, traditional: true },
-  { label: "Months of Waiting", us: false, traditional: true },
-  { label: "Uncertainty & Fall-Throughs", us: false, traditional: true },
-  { label: "Cash in Hand Fast", us: true, traditional: false },
-  { label: "Close on Your Timeline", us: true, traditional: false },
-  { label: "Sell As-Is (Any Condition)", us: true, traditional: false },
-  { label: "No Obligation Offer", us: true, traditional: false },
-];
-
-function Check({ show }: { show: boolean }) {
-  if (show) {
-    return (
-      <div
-        className="w-6 h-6 rounded-full flex items-center justify-center mx-auto"
-        style={{ backgroundColor: siteConfig.colors.accent }}
-      >
-        <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20">
-          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-        </svg>
-      </div>
-    );
-  }
-  return (
-    <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center mx-auto">
-      <svg className="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-        <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-      </svg>
-    </div>
-  );
+function fmt(n: number) {
+  return n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 }
 
 export default function BenefitsTable() {
+  const c = siteConfig.comparison;
+
+  const commissions = Math.round(c.listingPrice * (c.commissionRate / 100));
+  const closingCosts = Math.round(c.listingPrice * (c.closingCostRate / 100));
+  const totalDeductions = commissions + closingCosts + c.estimatedRepairs + c.miscCarryingCosts;
+  const traditionalWalkaway = c.listingPrice - totalDeductions;
+  const cashWalkaway = c.cashOfferPrice;
+  const youKeepMore = cashWalkaway - traditionalWalkaway;
+
   return (
-    <section className="py-16 md:py-20" style={{ backgroundColor: siteConfig.colors.surface }}>
-      <div className="max-w-4xl mx-auto px-4">
+    <section className="py-16 md:py-20 bg-white">
+      <div className="max-w-5xl mx-auto px-4">
+
+        {/* Header */}
         <div className="text-center mb-10">
           <h2
             className="font-playfair text-3xl md:text-4xl font-bold mb-3"
             style={{ color: siteConfig.colors.primary }}
           >
-            Why Sell to Us vs. Listing with an Agent?
+            Cash Offer vs. Traditional Listing
           </h2>
-          <p className="text-gray-600 text-lg">
-            The traditional way is slow, expensive, and stressful. Here's how we compare.
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+            A higher listing price doesn&apos;t always mean more money in your pocket. See how the
+            math actually works when you account for fees, repairs, and time.
           </p>
         </div>
 
-        <div className="overflow-x-auto rounded-2xl shadow-lg">
-          <table className="w-full">
-            <thead>
-              <tr>
-                <th className="py-4 px-6 text-left text-sm font-semibold text-gray-500 bg-gray-50 rounded-tl-2xl" style={{ width: "50%" }}>
-                  &nbsp;
-                </th>
-                <th
-                  className="py-4 px-6 text-center text-sm font-bold text-white rounded-none"
-                  style={{ backgroundColor: siteConfig.colors.primary }}
+        {/* Cards */}
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+
+          {/* ── Our Cash Offer ── */}
+          <div
+            className="rounded-2xl overflow-hidden shadow-lg border-2"
+            style={{ borderColor: siteConfig.colors.accent }}
+          >
+            {/* Badge */}
+            <div
+              className="px-6 py-2.5 text-white text-xs font-bold uppercase tracking-widest text-center"
+              style={{ backgroundColor: siteConfig.colors.accent }}
+            >
+              ✦ The Smarter Choice
+            </div>
+
+            <div className="bg-white p-6">
+              {/* Title + price */}
+              <p className="text-sm font-semibold text-gray-500 mb-1">Our Cash Offer</p>
+              <p
+                className="font-playfair text-4xl font-bold mb-5"
+                style={{ color: siteConfig.colors.primary }}
+              >
+                {fmt(c.cashOfferPrice)}
+              </p>
+
+              {/* Line items */}
+              <div className="space-y-3 mb-5">
+                {[
+                  { label: "Commissions", value: 0 },
+                  { label: "Closing Costs", value: 0 },
+                  { label: "Repairs Needed", value: 0 },
+                  { label: "Misc Fees", value: 0 },
+                ].map((row) => (
+                  <div key={row.label} className="flex items-center justify-between border-b border-gray-100 pb-3">
+                    <span className="text-gray-600 text-sm">{row.label}</span>
+                    <span className="font-semibold text-gray-800 text-sm">{fmt(row.value)}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Walk away */}
+              <div
+                className="flex items-center justify-between rounded-xl px-4 py-3 mb-5"
+                style={{ backgroundColor: siteConfig.colors.accent + "15" }}
+              >
+                <span className="font-bold text-gray-800">Walk Away With</span>
+                <span
+                  className="font-bold text-xl"
+                  style={{ color: siteConfig.colors.accent }}
                 >
-                  {siteConfig.companyName}
-                </th>
-                <th className="py-4 px-6 text-center text-sm font-semibold text-gray-500 bg-gray-50 rounded-tr-2xl">
-                  Traditional Agent
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-100">
-              {rows.map((row, i) => (
-                <tr key={i} className="hover:bg-gray-50 transition-colors">
-                  <td className="py-3.5 px-6 text-sm font-medium text-gray-700">
-                    {row.label}
-                  </td>
-                  <td className="py-3.5 px-6">
-                    <Check show={row.us} />
-                  </td>
-                  <td className="py-3.5 px-6">
-                    <Check show={row.traditional} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  {fmt(cashWalkaway)}
+                </span>
+              </div>
+
+              {/* Meta */}
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-500">Time Period</span>
+                  <span className="font-semibold text-gray-800">{c.cashOfferDays}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-500">Guaranteed</span>
+                  <span className="font-semibold" style={{ color: siteConfig.colors.accent }}>Yes ✓</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ── Traditional Listing ── */}
+          <div className="rounded-2xl overflow-hidden shadow-sm border-2 border-gray-200">
+            {/* Badge placeholder to match height */}
+            <div className="px-6 py-2.5 bg-gray-100 text-gray-400 text-xs font-bold uppercase tracking-widest text-center">
+              Traditional Listing
+            </div>
+
+            <div className="bg-white p-6">
+              {/* Title + price */}
+              <p className="text-sm font-semibold text-gray-500 mb-1">Listed Price</p>
+              <p className="font-playfair text-4xl font-bold text-gray-800 mb-5">
+                {fmt(c.listingPrice)}
+              </p>
+
+              {/* Line items */}
+              <div className="space-y-3 mb-5">
+                {[
+                  { label: `Commissions (${c.commissionRate}%)`, value: commissions },
+                  { label: `Closing Costs (${c.closingCostRate}%)`, value: closingCosts },
+                  { label: "Estimated Repairs", value: c.estimatedRepairs },
+                  { label: "Misc Carrying Costs", value: c.miscCarryingCosts },
+                ].map((row) => (
+                  <div key={row.label} className="flex items-center justify-between border-b border-gray-100 pb-3">
+                    <span className="text-gray-600 text-sm">{row.label}</span>
+                    <span className="font-semibold text-red-500 text-sm">− {fmt(row.value)}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Walk away */}
+              <div className="flex items-center justify-between rounded-xl bg-red-50 px-4 py-3 mb-5">
+                <span className="font-bold text-gray-800">Walk Away With</span>
+                <span className="font-bold text-xl text-red-500">{fmt(traditionalWalkaway)}</span>
+              </div>
+
+              {/* Meta */}
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-500">Time Period</span>
+                  <span className="font-semibold text-gray-800">{c.traditionalDays}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-500">Guaranteed</span>
+                  <span className="font-semibold text-red-400">No ✗</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="text-center mt-8">
+        {/* You keep more callout */}
+        {youKeepMore > 0 && (
+          <div
+            className="text-center rounded-2xl py-5 px-6 mb-8"
+            style={{ backgroundColor: siteConfig.colors.primary }}
+          >
+            <p className="text-white/80 text-sm mb-1">With our cash offer, you keep an extra</p>
+            <p className="text-white font-bold text-2xl">
+              {fmt(youKeepMore)} more — in a fraction of the time
+            </p>
+          </div>
+        )}
+
+        {/* CTA */}
+        <div className="text-center">
           <a
             href="#get-offer"
             className="btn-primary inline-block px-8 py-4 rounded-lg text-white font-bold text-lg"
           >
-            Get My No-Obligation Cash Offer
+            Get My Free Cash Offer
           </a>
+          <p className="text-gray-400 text-xs mt-3">No obligation. No pressure. 100% free.</p>
         </div>
       </div>
     </section>
