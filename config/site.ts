@@ -71,9 +71,9 @@ export const siteConfig = {
     commissionRate: 6,        // percent of listing price
     closingCostRate: 2,       // percent of listing price
     estimatedRepairs: 4000,
-    miscCarryingCosts: 1000,
+    estimatedMonthlyMortgage: 1200,  // carrying cost = this × 3 months
     cashOfferDays: "14 Days",
-    traditionalDays: "65+ Days",
+    traditionalDays: "90+ Days",
   },
 
   // ── About Page ─────────────────────────────────────────────

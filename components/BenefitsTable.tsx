@@ -9,7 +9,8 @@ export default function BenefitsTable() {
 
   const commissions = Math.round(c.listingPrice * (c.commissionRate / 100));
   const closingCosts = Math.round(c.listingPrice * (c.closingCostRate / 100));
-  const totalDeductions = commissions + closingCosts + c.estimatedRepairs + c.miscCarryingCosts;
+  const carryingCosts = c.estimatedMonthlyMortgage * 3;
+  const totalDeductions = commissions + closingCosts + c.estimatedRepairs + carryingCosts;
   const traditionalWalkaway = c.listingPrice - totalDeductions;
   const cashWalkaway = c.cashOfferPrice;
   const youKeepMore = cashWalkaway - traditionalWalkaway;
@@ -121,7 +122,7 @@ export default function BenefitsTable() {
                   { label: `Commissions (${c.commissionRate}%)`, value: commissions },
                   { label: `Closing Costs (${c.closingCostRate}%)`, value: closingCosts },
                   { label: "Estimated Repairs", value: c.estimatedRepairs },
-                  { label: "Misc Carrying Costs", value: c.miscCarryingCosts },
+                  { label: "Carrying Costs (3 mo. mortgage)", value: carryingCosts },
                 ].map((row) => (
                   <div key={row.label} className="flex items-center justify-between border-b border-gray-100 pb-3">
                     <span className="text-gray-600 text-sm">{row.label}</span>
