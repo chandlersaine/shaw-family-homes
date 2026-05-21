@@ -152,19 +152,6 @@ export default function BenefitsTable() {
           </div>
         </div>
 
-        {/* You keep more callout */}
-        {youKeepMore > 0 && (
-          <div
-            className="text-center rounded-2xl py-5 px-6 mb-8"
-            style={{ backgroundColor: siteConfig.colors.primary }}
-          >
-            <p className="text-white/80 text-sm mb-1">With our cash offer, you keep an extra</p>
-            <p className="text-white font-bold text-2xl">
-              {fmt(youKeepMore)} more — in a fraction of the time
-            </p>
-          </div>
-        )}
-
         {/* CTA */}
         <div className="text-center">
           <a
