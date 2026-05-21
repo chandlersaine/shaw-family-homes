@@ -32,16 +32,13 @@ export default function Nav() {
 
         {/* Desktop nav links */}
         <div className="hidden md:flex items-center gap-6">
-          <Link
-            href="/about"
-            className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-          >
+          <Link href="/how-it-works" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
+            How It Works
+          </Link>
+          <Link href="/about" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
             About Us
           </Link>
-          <Link
-            href="/contact"
-            className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-          >
+          <Link href="/contact" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
             Contact
           </Link>
         </div>
@@ -87,6 +84,9 @@ export default function Nav() {
       {/* Mobile dropdown */}
       {mobileOpen && (
         <div className="md:hidden border-t border-gray-100 bg-white px-4 py-3 flex flex-col gap-3">
+          <Link href="/how-it-works" className="text-sm font-medium text-gray-700 py-1" onClick={() => setMobileOpen(false)}>
+            How It Works
+          </Link>
           <Link href="/about" className="text-sm font-medium text-gray-700 py-1" onClick={() => setMobileOpen(false)}>
             About Us
           </Link>
