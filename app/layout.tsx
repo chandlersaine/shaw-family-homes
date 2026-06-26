@@ -11,8 +11,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: `Sell Your House Fast in ${siteConfig.serviceArea} | ${siteConfig.companyName}`,
-  description: `Get a fair cash offer for your ${siteConfig.serviceArea} home in 24 hours. No repairs, no fees, no commissions. Close in as little as 7 days.`,
+  title: `${siteConfig.companyName} | We Buy Houses Fast for Cash`,
+  description: `Get a fair cash offer for your home in 24 hours. No repairs, no fees, no commissions. Shaw Family Homes buys houses across the top 25 counties in the U.S. Close in as little as 7 days.`,
 };
 
 export default function RootLayout({

@@ -194,7 +194,7 @@ export default function LeadForm() {
               <input
                 type="tel"
                 required
-                placeholder="(404) 555-0000"
+                placeholder="(888) 555-0000"
                 value={s1.phone}
                 onChange={(e) => setS1({ ...s1, phone: e.target.value })}
                 className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 transition-shadow"
@@ -222,7 +222,7 @@ export default function LeadForm() {
               <input
                 type="text"
                 required
-                placeholder="123 Main St, Atlanta, GA 30301"
+                placeholder="123 Main St, City, State 00000"
                 value={s1.address}
                 onChange={(e) => setS1({ ...s1, address: e.target.value })}
                 className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 transition-shadow"

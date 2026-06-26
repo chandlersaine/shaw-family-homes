@@ -55,7 +55,7 @@ export default function HeroSection() {
               className="w-2 h-2 rounded-full animate-pulse"
               style={{ backgroundColor: siteConfig.colors.accent }}
             />
-            Local Cash Buyers · {siteConfig.serviceArea}, {siteConfig.serviceState}
+            Trusted Cash Buyers · Top 25 Markets Nationwide
           </div>
 
           {/* Headline */}
@@ -67,7 +67,7 @@ export default function HeroSection() {
             >
               Get Cash
             </span>{" "}
-            in {siteConfig.serviceArea}
+            in Any Market
           </h1>
 
           {/* Sub-headline */}

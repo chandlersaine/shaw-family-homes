@@ -4,22 +4,21 @@
 
 export const siteConfig = {
   // ── Brand ──────────────────────────────────────────────────
-  companyName: "Level Up Home Buyers",
-  serviceArea: "Atlanta",
-  serviceState: "Georgia",
-  phone: "(404) 800-0000",
-  email: "offers@leveluphomebuyers.com",
-  logo: "", // path to logo in /public/images — leave blank to show text logo
+  companyName: "Shaw Family Homes",
+  serviceArea: "Across the Country",
+  serviceState: "Nationwide",
+  phone: "(888) 751-4557",
+  email: "roberts@webuyhouses.com",
+  logo: "/images/logo.png",
 
   // ── Brand Colors ───────────────────────────────────────────
-  // Swap these hex values to match client branding
   colors: {
-    primary: "#1B3A6B",       // nav, buttons, headings
-    primaryDark: "#122852",   // button hover states
-    accent: "#22C55E",        // highlight badges, checkmarks
-    bg: "#FFFFFF",            // page background
-    surface: "#F8F9FA",       // card / section backgrounds
-    text: "#1A1A1A",          // body text
+    primary: "#1D2226",       // nav, buttons, headings — charcoal from logo
+    primaryDark: "#0F1518",   // button hover states
+    accent: "#C8A96E",        // warm gold — complements charcoal + white
+    bg: "#FFFFFF",
+    surface: "#F8F9FA",
+    text: "#1A1A1A",
   },
 
   // ── Tracking (leave as "" if not yet set up) ───────────────
@@ -27,61 +26,42 @@ export const siteConfig = {
   clarityId: "",
 
   // ── Zapier Webhooks ────────────────────────────────────────
-  // Step 1 fires immediately when name/phone/email/address submitted
-  // Step 2 fires when qualification questions answered
   zapierWebhookStep1: "",
   zapierWebhookStep2: "",
 
   // ── Social Proof ───────────────────────────────────────────
-  // Set all to 0 for brand-new companies — stats bar hides automatically
   stats: {
-    homesBought: 0,
-    yearsInBusiness: 0,
-    reviewCount: 0,
+    homesBought: 500,       // 15+ years buying — update with Bob's actual number
+    yearsInBusiness: 15,
+    reviewCount: 0,         // add once Google/Trustpilot reviews are gathered
     rating: 0,
   },
 
   // ── Testimonials ───────────────────────────────────────────
-  // Empty array = section hidden automatically
-  testimonials: [
-    // Uncomment and fill in to show testimonials:
-    // {
-    //   name: "Sarah M.",
-    //   location: "Atlanta, GA",
-    //   quote: "The process was so simple. I got a fair cash offer within 24 hours and closed in two weeks. No stress, no repairs, no realtor fees.",
-    //   stars: 5,
-    // },
-    // {
-    //   name: "Marcus T.",
-    //   location: "Marietta, GA",
-    //   quote: "I inherited my mom's house and had no idea what to do. These guys walked me through everything and made it so easy.",
-    //   stars: 5,
-    // },
-  ] as Array<{ name: string; location: string; quote: string; stars: number }>,
+  // Empty array = section hidden automatically — add real reviews when available
+  testimonials: [] as Array<{ name: string; location: string; quote: string; stars: number }>,
 
   // ── Media Logos ────────────────────────────────────────────
-  // Empty array = "As Seen On" section hidden
-  mediaLogos: [] as string[], // e.g. ["ABC", "FOX", "CBS", "NBC"]
+  mediaLogos: [] as string[],
 
   // ── Cash Offer Comparison ──────────────────────────────────
-  // Adjust these numbers to reflect a realistic example for the client's market
   comparison: {
-    cashOfferPrice: 150000,
-    listingPrice: 170000,
-    commissionRate: 6,        // percent of listing price
-    closingCostRate: 2,       // percent of listing price
-    estimatedRepairs: 4000,
-    estimatedMonthlyMortgage: 1200,  // carrying cost = this × 3 months
+    cashOfferPrice: 215000,
+    listingPrice: 245000,
+    commissionRate: 6,
+    closingCostRate: 2,
+    estimatedRepairs: 8000,
+    estimatedMonthlyMortgage: 1600,
     cashOfferDays: "14 Days",
     traditionalDays: "90+ Days",
   },
 
   // ── About Page ─────────────────────────────────────────────
-  founderName: "John Smith",
+  founderName: "Bob Shaw",
   founderTitle: "Founder & Owner",
-  founderPhoto: "", // path in /public/images — leave blank to hide photo
+  founderPhoto: "", // add Bob's photo to /public/images and set path here
   founderBio:
-    "After watching friends and family struggle with the traditional home-selling process — the repairs, the open houses, the months of waiting — I decided there had to be a better way. I founded Level Up Home Buyers to give homeowners in Atlanta a simple, stress-free alternative. We pay fair cash prices and close on your schedule.",
+    "Since 2010, Shaw Family Homes has been buying houses directly from homeowners across the country — no agents, no fees, no hassle. I started this company because I saw how stressful and slow the traditional selling process could be. My mission has always been simple: treat every seller like family and make the process easy from day one.",
   companyMission:
-    "We believe every homeowner deserves a fast, fair, and honest option when it's time to sell. No games, no pressure, no surprises.",
+    "We believe every homeowner deserves a fast, fair, and honest option when it's time to sell. We operate in the top 25 counties across the U.S. and close on your schedule — whether that's 7 days or 60.",
 };

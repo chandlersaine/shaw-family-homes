@@ -15,8 +15,7 @@ export default function Footer() {
               {siteConfig.companyName}
             </p>
             <p className="text-sm leading-relaxed">
-              We buy houses in {siteConfig.serviceArea}, {siteConfig.serviceState}{" "}
-              fast, fair, and hassle-free.
+              We buy houses across the top 25 counties in the U.S. — fast, fair, and hassle-free.
             </p>
           </div>
 
@@ -73,7 +72,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="text-sm">
-                {siteConfig.serviceArea}, {siteConfig.serviceState}
+                Serving Top 25 Counties Nationwide
               </li>
             </ul>
           </div>
