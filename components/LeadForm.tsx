@@ -1,6 +1,5 @@
 "use client";
 import { useState, useRef } from "react";
-import { useRouter } from "next/navigation";
 import { siteConfig } from "@/config/site";
 
 function generateLeadId() {
@@ -34,7 +33,6 @@ function isQualified(s2: Step2Data): boolean {
 }
 
 export default function LeadForm() {
-  const router = useRouter();
   const leadIdRef = useRef<string>("");
   const step1Ref = useRef<Step1Data | null>(null);
 
@@ -95,14 +93,14 @@ export default function LeadForm() {
 
   async function handleStep2(e: React.FormEvent) {
     e.preventDefault();
-    setError("");
     setLoading(true);
 
     const qualified = isQualified(s2);
 
+    firePixelEvent("CompleteRegistration");
+    firePixelEvent(qualified ? "QualifiedLead" : "DisqualifiedLead");
+
     const payload = {
-      leadId: leadIdRef.current,
-      step: 2,
       name: step1Ref.current?.name ?? "",
       phone: step1Ref.current?.phone ?? "",
       email: step1Ref.current?.email ?? "",
@@ -111,29 +109,22 @@ export default function LeadForm() {
       yearsOwned: s2.yearsOwned,
       timeframe: s2.timeframe,
       condition: s2.condition,
-      qualified,
-      submittedAt: new Date().toISOString(),
+      qualified: qualified ? "1" : "0",
       source: "website",
+      submittedAt: new Date().toISOString(),
     };
 
-    // Fire Step 2 webhook
-    if (siteConfig.zapierWebhookStep2) {
-      try {
-        await fetch(siteConfig.zapierWebhookStep2, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-      } catch {
-        // Don't block redirect on webhook failure
-      }
+    try {
+      await fetch(siteConfig.ghlWebhook, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch {
+      // proceed to redirect even if webhook fails
     }
 
-    firePixelEvent("CompleteRegistration");
-    firePixelEvent(qualified ? "QualifiedLead" : "DisqualifiedLead");
-
-    setLoading(false);
-    router.push(qualified ? "/qualified" : "/disqualified");
+    window.location.href = qualified ? "/qualified" : "/disqualified";
   }
 
   return (

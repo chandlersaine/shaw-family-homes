@@ -22,24 +22,61 @@ export const siteConfig = {
   },
 
   // ── Tracking (leave as "" if not yet set up) ───────────────
-  metaPixelId: "",
+  metaPixelId: "1317223190528019",
   clarityId: "",
 
-  // ── Zapier Webhooks ────────────────────────────────────────
+  // ── Webhooks ───────────────────────────────────────────────
   zapierWebhookStep1: "",
-  zapierWebhookStep2: "",
+  zapierWebhookStep2: "/api/shaw-lead",
+  ghlWebhook: "https://services.leadconnectorhq.com/hooks/nGTFMqFavoP286N1jfXR/webhook-trigger/fb0d5bd2-9d0f-41b8-a24e-c280d1bdf518",
 
   // ── Social Proof ───────────────────────────────────────────
   stats: {
-    homesBought: 500,       // 15+ years buying — update with Bob's actual number
+    homesBought: 500,
     yearsInBusiness: 15,
-    reviewCount: 0,         // add once Google/Trustpilot reviews are gathered
-    rating: 0,
+    reviewCount: 18,
+    rating: 5.0,
   },
 
   // ── Testimonials ───────────────────────────────────────────
-  // Empty array = section hidden automatically — add real reviews when available
-  testimonials: [] as Array<{ name: string; location: string; quote: string; stars: number }>,
+  testimonials: [
+    {
+      name: "Rod Bateman",
+      location: "Boise, ID",
+      quote: "Shaw Family Homes came out the same day I called them, made a good offer, and closed within two weeks. It could have taken months to go through a real estate agent.",
+      stars: 5,
+    },
+    {
+      name: "Debbie Florence",
+      location: "Boise, ID",
+      quote: "They understood my concerns, listened to my needs, and helped me get way more than I thought I could for my house. I can't thank Bob enough for what they've done for me.",
+      stars: 5,
+    },
+    {
+      name: "Bryce Lattin",
+      location: "Boise, ID",
+      quote: "They made everything extremely easy and I didn't feel pressured to accept their offer. I was able to get close to what I was hoping for the house.",
+      stars: 5,
+    },
+    {
+      name: "Stephanie Kaesemeyer",
+      location: "Boise, ID",
+      quote: "This company worked fast but diligently with us to sell our home. They were super friendly and trustworthy and made the process smooth and easy.",
+      stars: 5,
+    },
+    {
+      name: "Michael Thiel",
+      location: "Boise, ID",
+      quote: "The team at Shaw Family Homes made the sale of the house seamless. If you have property to sell and need to get it done quick, they are the ones to call.",
+      stars: 5,
+    },
+    {
+      name: "Nick Staub",
+      location: "Boise, ID",
+      quote: "He was collaborative and we ended up with a sweet early closing thanks to his efficiency. He made the entire sale process so easy and ensured a fantastic experience for all parties involved.",
+      stars: 5,
+    },
+  ] as Array<{ name: string; location: string; quote: string; stars: number }>,
 
   // ── Media Logos ────────────────────────────────────────────
   mediaLogos: [] as string[],
