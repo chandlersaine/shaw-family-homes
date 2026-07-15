@@ -100,7 +100,11 @@ export default function LeadForm() {
     firePixelEvent("CompleteRegistration");
     firePixelEvent(qualified ? "QualifiedLead" : "DisqualifiedLead");
 
-    const payload = {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "https://levelup-ghl-webhook.onrender.com/webhook/shaw-qualify";
+
+    const fields: Record<string, string> = {
       name: step1Ref.current?.name ?? "",
       phone: step1Ref.current?.phone ?? "",
       email: step1Ref.current?.email ?? "",
@@ -110,21 +114,18 @@ export default function LeadForm() {
       timeframe: s2.timeframe,
       condition: s2.condition,
       qualified: qualified ? "1" : "0",
-      source: "website",
-      submittedAt: new Date().toISOString(),
     };
 
-    try {
-      await fetch("/.netlify/functions/shaw-lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-    } catch {
-      // proceed to redirect even if webhook fails
+    for (const [key, value] of Object.entries(fields)) {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = key;
+      input.value = value;
+      form.appendChild(input);
     }
 
-    window.location.href = qualified ? "/qualified" : "/disqualified";
+    document.body.appendChild(form);
+    form.submit();
   }
 
   return (
