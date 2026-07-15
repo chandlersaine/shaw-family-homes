@@ -115,7 +115,7 @@ export default function LeadForm() {
     };
 
     try {
-      await fetch(siteConfig.ghlWebhook, {
+      await fetch("/.netlify/functions/shaw-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
