@@ -85,11 +85,57 @@ export default function AboutPage() {
                 >
                   {siteConfig.founderTitle}
                 </p>
-                <p className="text-gray-700 leading-relaxed">{siteConfig.founderBio}</p>
+                <p className="text-gray-700 leading-relaxed whitespace-pre-line">{siteConfig.founderBio}</p>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Meet the Team */}
+        {siteConfig.team && siteConfig.team.length > 0 && (
+          <section className="py-16 md:py-20" style={{ backgroundColor: siteConfig.colors.surface }}>
+            <div className="max-w-5xl mx-auto px-4">
+              <div className="text-center mb-12">
+                <h2
+                  className="font-playfair text-3xl font-bold"
+                  style={{ color: siteConfig.colors.primary }}
+                >
+                  Meet the Team
+                </h2>
+              </div>
+              <div className="grid md:grid-cols-3 gap-10">
+                {siteConfig.team.map((member, i) => (
+                  <div key={i} className="text-center">
+                    <div className="w-40 h-40 mx-auto rounded-full overflow-hidden shadow-lg mb-5">
+                      <Image
+                        src={member.photo}
+                        alt={member.name}
+                        width={160}
+                        height={160}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3
+                      className="font-playfair text-xl font-bold mb-1"
+                      style={{ color: siteConfig.colors.primary }}
+                    >
+                      {member.name}
+                    </h3>
+                    <p
+                      className="text-sm font-semibold mb-4"
+                      style={{ color: siteConfig.colors.accent }}
+                    >
+                      {member.title}
+                    </p>
+                    <p className="text-gray-700 text-sm leading-relaxed text-left whitespace-pre-line">
+                      {member.bio}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Mission */}
         <section

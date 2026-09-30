@@ -96,9 +96,31 @@ export const siteConfig = {
   // ── About Page ─────────────────────────────────────────────
   founderName: "Bob Shaw",
   founderTitle: "Founder & Owner",
-  founderPhoto: "", // add Bob's photo to /public/images and set path here
+  founderPhoto: "/images/founder-bob-shaw.jpg",
   founderBio:
-    "Since 2010, Shaw Family Homes has been buying houses directly from homeowners across the country — no agents, no fees, no hassle. I started this company because I saw how stressful and slow the traditional selling process could be. My mission has always been simple: treat every seller like family and make the process easy from day one.",
+    "Robert Shaw is a real estate investor and entrepreneur dedicated to helping homeowners move forward with confidence. With deep experience in property acquisition, wholesaling, and cash home buying, Robert has built his career around one simple idea: selling a house should feel like an opportunity, not an obstacle. He specializes in creating fast, flexible, and stress-free solutions for people ready to sell — whether they're facing a tough situation, a big life change, or simply want a straightforward sale without the hassle of repairs, showings, or waiting.\n\nWhat sets Robert apart is his genuine passion for people. He listens first, then builds a solution tailored to each seller's needs, so they can close the chapter on one property and step confidently into the next one. For Robert, real estate isn't just about transactions — it's about helping people move forward, one home at a time.",
   companyMission:
     "We believe every homeowner deserves a fast, fair, and honest option when it's time to sell. We operate in the top 25 counties across the U.S. and close on your schedule — whether that's 7 days or 60.",
+
+  // ── Team ───────────────────────────────────────────────────
+  team: [
+    {
+      name: "JJ Clark",
+      title: "Client Care Manager",
+      photo: "/images/team-jj.jpg",
+      bio: "JJ Clark is a real estate professional with over 10 years of experience helping homeowners navigate the sale of their property with confidence. Specializing in working directly with sellers, JJ takes the time to understand each homeowner's unique situation — whether that's a tight timeline, an inherited property, deferred maintenance, or simply the desire for a fast, hassle-free sale — and builds a solution tailored to their needs.\n\nOver the past decade, JJ has guided countless sellers through every stage of the process, combining deep market knowledge with a straightforward, no-pressure approach. Clients consistently point to JJ's honesty, responsiveness, and ability to find creative solutions where a traditional sale might fall short.\n\nWhether the goal is a quick as-is cash sale or exploring the full range of options available, JJ Clark is committed to making the process simple, transparent, and centered on what's best for the seller.",
+    },
+    {
+      name: "Gabe Anderson",
+      title: "Client Care Manager",
+      photo: "/images/team-gabe.jpg",
+      bio: "Gabe Anderson is dedicated to providing dependable customer service and finding practical solutions for every client. He takes the time to understand each seller's individual needs, priorities, and timeline, then works hard to make the process as clear and stress-free as possible. By putting himself in the seller's position, Gabe negotiates with their best interests in mind and remains focused on achieving the strongest possible outcome.",
+    },
+    {
+      name: "Pete Sampedro",
+      title: "Customer Service Specialist",
+      photo: "/images/team-pete.jpg",
+      bio: "Pete Sampedro is a client-focused professional who believes great service begins with listening. He works closely with sellers to understand their goals and provide straightforward guidance throughout the process. Pete approaches every negotiation from the seller's perspective, advocating for their interests while seeking practical solutions and the best possible result.",
+    },
+  ],
 };

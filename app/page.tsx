@@ -8,7 +8,6 @@ import PainPoints from "@/components/PainPoints";
 import Testimonials from "@/components/Testimonials";
 import MediaLogos from "@/components/MediaLogos";
 import CTABanner from "@/components/CTABanner";
-import OwnerVideo from "@/components/OwnerVideo";
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
       <main>
         <HeroSection />
         <StatsBar />
-        <OwnerVideo />
         <HowItWorks />
         <BenefitsTable />
         <PainPoints />
