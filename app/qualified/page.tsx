@@ -2,6 +2,7 @@ import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
+import OwnerVideo from "@/components/OwnerVideo";
 import { siteConfig } from "@/config/site";
 
 const nextSteps = [
@@ -74,6 +75,8 @@ export default function QualifiedPage() {
             </p>
           </div>
         </section>
+
+        <OwnerVideo />
 
         {/* What happens next */}
         <section className="py-16 md:py-20 bg-white">
