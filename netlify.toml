@@ -1,3 +1,11 @@
 [build]
   command = "npm run build"
   publish = "out"
+
+# Force the default Netlify subdomain to redirect to the production
+# custom domain so visitors/search engines always land on shawfamilyhomesre.com
+[[redirects]]
+  from = "https://shaw-family-homes.netlify.app/*"
+  to = "https://shawfamilyhomesre.com/:splat"
+  status = 301
+  force = true
