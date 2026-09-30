@@ -14,16 +14,16 @@ export default function OwnerVideo() {
           Hear directly from Robert about how Shaw Family Homes helps homeowners sell fast, for cash, with no hassle.
         </p>
         <div className="rounded-2xl overflow-hidden shadow-xl bg-black" style={{ border: `3px solid ${siteConfig.colors.accent}` }}>
-          <video
-            className="w-full h-auto block"
-            controls
-            playsInline
-            preload="metadata"
-            poster="/videos/robert-shaw-intro-poster.jpg"
-          >
-            <source src="/videos/robert-shaw-intro.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+            <iframe
+              className="absolute inset-0 w-full h-full"
+              src="https://drive.google.com/file/d/1Byzusr3dwlSv_WXutoSteBoGCRf5oYKR/preview"
+              title="A Message from Robert Shaw"
+              allow="autoplay; fullscreen"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </section>
